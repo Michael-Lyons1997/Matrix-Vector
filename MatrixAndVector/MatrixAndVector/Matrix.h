@@ -4,6 +4,7 @@ class Matrix
 {
 public:
 	Matrix();
+	Matrix(Vector Row1, Vector Row2, Vector Row3);
 	Matrix(double newA11, double newA12, double newA13,
 		double newA21, double newA22, double newA23,
 		double newA31, double newA32, double newA33);
@@ -28,6 +29,26 @@ public:
 	double getA32();
 	double getA33();
 
+	static Vector operator *(Matrix M1, Vector V1);
+	static Vector operator *(Vector V1, Matrix M1);
+	static Matrix Transpose(Matrix M1);
+	static Matrix operator +(Matrix M1, Matrix M2);
+	static Matrix operator -(Matrix M1, Matrix M2);
+	static Matrix operator *(double x, Matrix M1);
+	static Matrix operator *(Matrix M1, Matrix M2);
+	static double Determinant(Matrix M1);
+	Vector Row(int i);
+	Vector Column(int i);
+	static Matrix Inverse(Matrix M1);
+	static Matrix Rotation(int _angle);
+	static Matrix Translate(int dx, int dy);
+	static Matrix Scale(int dx, int dy);
+	static Matrix operator -(Matrix M1);
+	static Matrix RotationX(int _angle);
+	static Matrix RotationY(int _angle);
+	static Matrix RotationZ(int _angle);
+	static Matrix Scale3D(int dx);
+	
 protected:
 	double A11;
 	double A12;
