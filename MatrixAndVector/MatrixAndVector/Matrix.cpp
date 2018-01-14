@@ -146,7 +146,7 @@ Vector Matrix::operator*(Matrix M1, Vector V1)
 
 Vector Matrix::operator*(Vector V1, Matrix M1)
 {
-	return new Vector(M1.A11 * V1.getX() + M1.A21 * V1.getY() + M1.A31 * V1.getZ(),
+	return Vector(M1.A11 * V1.getX() + M1.A21 * V1.getY() + M1.A31 * V1.getZ(),
 		M1.A12 * V1.getX() + M1.A22 * V1.getY() + M1.A32 * V1.getZ(),
 		M1.A13 * V1.getX() + M1.A23 * V1.getY() + M1.A33 * V1.getZ());
 }
@@ -158,20 +158,19 @@ Matrix Matrix::Transpose(Matrix M1)
 		M1.A13, M1.A23, M1.A33);
 }
 
-
-static Matrix operator +(Matrix M1, Matrix M2)
+Matrix Matrix::operator +(Matrix M1, Matrix M2)
 {
 	return Matrix(M1.getA11() + M2.getA11(), M1.getA12() + M2.getA12(), M1.getA13() + M2.getA13(),
 		M1.getA21() + M2.getA21(), M1.getA22() + M2.getA22(), M1.getA23() + M2.getA23(),
 		M1.getA31() + M2.getA31(), M1.getA32() + M2.getA32(), M1.getA33() + M2.getA33());
 }
-static Matrix operator -(Matrix M1, Matrix M2)
+Matrix Matrix::operator -(Matrix M1, Matrix M2)
 {
 	return Matrix(M1.getA11() - M2.getA11(), M1.getA12() - M2.getA12(), M1.getA13() - M2.getA13(),
 		M1.getA21() - M2.getA21(), M1.getA22() - M2.getA22(), M1.getA23() - M2.getA23(),
 		M1.getA31() - M2.getA31(), M1.getA32() - M2.getA32(), M1.getA33() - M2.getA33());
 }
-static Matrix operator *(double x, Matrix M1)
+Matrix Matrix::operator *(double x, Matrix M1)
 {
 	Matrix answer = Matrix();
 	answer.setA11(M1.getA11() * x);
@@ -189,31 +188,31 @@ static Matrix operator *(double x, Matrix M1)
 	return answer;
 }
 
-static Matrix operator *(Matrix M1, Matrix M2)
+Matrix Matrix::operator *(Matrix M1, Matrix M2)
 {
 	Matrix answer = Matrix();
-	answer.setA11(); = M1.Row(0) * M2.Column(0);
-	answer.setA12(); = M1.Row(0) * M2.Column(1);
-	answer.setA13(); = M1.Row(0) * M2.Column(2);
+	answer.setA11(M1.Row(0) * M2.Column(0));
+	answer.setA12(M1.Row(0) * M2.Column(1));
+	answer.setA13(M1.Row(0) * M2.Column(2));
 
-	answer.setA21(); = M1.Row(1) * M2.Column(0);
-	answer.setA22(); = M1.Row(1) * M2.Column(1);
-	answer.setA23(); = M1.Row(1) * M2.Column(2);
+	answer.setA21(M1.Row(1) * M2.Column(0));
+	answer.setA22(M1.Row(1) * M2.Column(1));
+	answer.setA23(M1.Row(1) * M2.Column(2));
 
-	answer.A31 = M1.Row(2) * M2.Column(0);
-	answer.A32 = M1.Row(2) * M2.Column(1);
-	answer.A33 = M1.Row(2) * M2.Column(2);
+	answer.setA31(M1.Row(2) * M2.Column(0));
+	answer.setA32(M1.Row(2) * M2.Column(1));
+	answer.setA33(M1.Row(2) * M2.Column(2));
 
 
 	return answer;
 }
-static double Determinant(Matrix M1)
+double Matrix::Determinant(Matrix M1)
 {// method to return the determinant of a 3x3 matrix
  //                     aei      -     ahf                  + dhc                     - gec                      +    gbh                    -     dbi   
-	return M1.A11 * M1.A22 * M1.A33 - M1.A11 * M1.A32 * M1.A23 + M1.A21 * M1.A32 * M1.A13 - M1.A31 * M1.A22 * M1.A13 + M1.A31 * M1.A12 * M1.A23 - M1.A21 * M1.A12 * M1.A33;
+	return M1.getA11() * M1.getA22() * M1.getA33() - M1.getA11() * M1.getA32() * M1.getA23() + M1.getA21() * M1.getA32() * M1.getA13() - M1.getA31() * M1.getA22() * M1.getA13() + M1.getA31() * M1.getA12() * M1.getA23() - M1.getA21() * M1.getA12() * M1.getA33();
 }
 
-Vector Row(int i)
+Vector Matrix::Row(int i)
 {
 	
 	switch (i)
@@ -228,7 +227,7 @@ Vector Row(int i)
 	}
 }
 
-Vector Column(int i)
+Vector Matrix::Column(int i)
 {
 	switch (i)
 	{
@@ -242,16 +241,15 @@ Vector Column(int i)
 	}
 }
 
-static Matrix Inverse(Matrix M1)
+Matrix Matrix::Inverse(Matrix M1)
 {
-	// method to return the inverse of a matrix if exists else zero vector
 	double det = Determinant(M1);
 	if (det == 0)
 		return Matrix();
 	else
 	{
 		double scale = 1 / det;
-		Matrix answer = new Matrix();
+		Matrix answer = Matrix();
 		answer.A11 = scale * (M1.A22 * M1.A33 - M1.A23 * M1.A32); // ei-fh
 		answer.A12 = scale * (M1.A13 * M1.A32 - M1.A12 * M1.A33); // ch-bi
 		answer.A13 = scale * (M1.A12 * M1.A23 - M1.A13 * M1.A22); // ch-bi
@@ -266,11 +264,9 @@ static Matrix Inverse(Matrix M1)
 		answer.A33 = scale * (M1.A11 * M1.A22 - M1.A12 * M1.A21); // ae-bd
 
 		return answer;
-	}
-
 }
 
-static Matrix Rotation(int _angle)
+Matrix Matrix::Rotation(int _angle)
 {
 	double radians = Math.PI / 180 * _angle;
 	Matrix answer = Matrix();
