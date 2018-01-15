@@ -1,0 +1,44 @@
+﻿  Vector.cpp
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(18): error C2801: 'Vector::operator +' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(19): error C2801: 'Vector::operator -' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(20): error C2801: 'Vector::operator -' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(21): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(22): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(23): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(24): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(25): error C2801: 'Vector::operator ^' must be a non-static member
+  Matrix.cpp
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(18): error C2801: 'Vector::operator +' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(19): error C2801: 'Vector::operator -' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(20): error C2801: 'Vector::operator -' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(21): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(22): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(23): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(24): error C2801: 'Vector::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\vector.h(25): error C2801: 'Vector::operator ^' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.h(34): error C2801: 'Matrix::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.h(35): error C2801: 'Matrix::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.h(37): error C2801: 'Matrix::operator +' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.h(38): error C2801: 'Matrix::operator -' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.h(39): error C2801: 'Matrix::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.h(40): error C2801: 'Matrix::operator *' must be a non-static member
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(194): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(194): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(195): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(195): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(196): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(196): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(198): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(198): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(199): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(199): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(200): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(200): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(202): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(202): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(203): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(203): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(204): error C2264: 'Vector::operator *': error in function definition or declaration; function not called
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(204): error C2088: '*': illegal for class
+c:\users\c00217557\desktop\matrixandvector\matrixandvector\matrix.cpp(324): error C2677: binary '*': no global operator found which takes type 'Matrix' (or there is no acceptable conversion)
+  Generating Code...

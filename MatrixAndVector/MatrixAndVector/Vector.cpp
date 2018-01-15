@@ -74,17 +74,17 @@ void Vector::normalise()
 	}
 }
 
-static Vector operator +(Vector v1, Vector v2)
+Vector Vector::operator +(Vector v1, Vector v2)
 {
 	return Vector(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ());
 }
 
-static Vector operator -(Vector v1, Vector v2)
+Vector Vector::operator -(Vector v1, Vector v2)
 {
 	return Vector(v1.getX() - v2.getX(), v1.getY() - v2.getY(), v1.getZ() - v2.getZ());
 }
 
-static Vector operator -(Vector v)
+Vector Vector::operator -(Vector v)
 {
 	Vector v1 = Vector();
 	v1.setX(-v.getX());
@@ -93,27 +93,27 @@ static Vector operator -(Vector v)
 	return v1;
 }
 
-static double operator *(Vector v1, Vector v2)
+double Vector::operator *(Vector v1, Vector v2)
 {
 	return (v1.getX() * v2.getX() + v1.getY() * v2.getY() + v1.getZ() * v2.getZ());
 }
 
-static Vector operator *(double k, Vector v1)
+Vector Vector::operator *(double k, Vector v1)
 {
 	return Vector(v1.getX() * (float)k, v1.getY() * (float)k, v1.getZ() * (float)k);
 }
 
-static Vector operator *(float k, Vector v1)
+Vector Vector::operator *(float k, Vector v1)
 {
 	return Vector(v1.getX() * k, v1.getY() * k, v1.getZ() * k);
 }
 
-static Vector operator *(int k, Vector v1)
+Vector Vector::operator *(int k, Vector v1)
 {
 	return Vector(v1.getX() * k, v1.getY() * k, v1.getZ() * k);
 }
 
-static Vector operator ^(Vector v1, Vector v2)
+Vector Vector::operator ^(Vector v1, Vector v2)
 {
 	return Vector(v1.getY() * v2.getZ() - v1.getZ() * v2.getY(), v1.getZ() * v2.getX() - v1.getX() * v2.getZ(), v1.getX() * v2.getY() - v1.getY() * v2.getX());
 }
