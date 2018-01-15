@@ -1,8 +1,10 @@
 #pragma once
 #include "Vector.h"
+#include <cmath>
 class Matrix
 {
 public:
+	const double PI = acos(-1);
 	Matrix();
 	Matrix(Vector Row1, Vector Row2, Vector Row3);
 	Matrix(double newA11, double newA12, double newA13,
@@ -39,15 +41,15 @@ public:
 	static double Determinant(Matrix M1);
 	Vector Row(int i);
 	Vector Column(int i);
-	static Matrix Inverse(Matrix M1);
-	static Matrix Rotation(int _angle);
-	static Matrix Translate(int dx, int dy);
-	static Matrix Scale(int dx, int dy);
-	static Matrix operator -(Matrix M1);
-	static Matrix RotationX(int _angle);
-	static Matrix RotationY(int _angle);
-	static Matrix RotationZ(int _angle);
-	static Matrix Scale3D(int dx);
+	Matrix Inverse(Matrix M1);
+	Matrix Rotation(int _angle);
+	Matrix Translate(int dx, int dy);
+	Matrix Scale(int dx, int dy);
+	Matrix operator -(Matrix M1);
+	Matrix RotationX(int _angle);
+	Matrix RotationY(int _angle);
+	Matrix RotationZ(int _angle);
+	Matrix Scale3D(int dx);
 	
 protected:
 	double A11;

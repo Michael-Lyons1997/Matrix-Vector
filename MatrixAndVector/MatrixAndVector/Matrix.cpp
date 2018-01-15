@@ -245,36 +245,39 @@ Matrix Matrix::Inverse(Matrix M1)
 {
 	double det = Determinant(M1);
 	if (det == 0)
+	{
 		return Matrix();
+	}
 	else
 	{
 		double scale = 1 / det;
 		Matrix answer = Matrix();
-		answer.A11 = scale * (M1.A22 * M1.A33 - M1.A23 * M1.A32); // ei-fh
-		answer.A12 = scale * (M1.A13 * M1.A32 - M1.A12 * M1.A33); // ch-bi
-		answer.A13 = scale * (M1.A12 * M1.A23 - M1.A13 * M1.A22); // ch-bi
+		answer.setA11(scale * (M1.getA22() * M1.getA33() - M1.getA23() * M1.getA32())); // ei-fh
+		answer.setA12(scale * (M1.getA13() * M1.getA32() - M1.getA12() * M1.getA33())); // ch-bi
+		answer.setA13(scale * (M1.getA12() * M1.getA23() - M1.getA13() * M1.getA22())); // ch-bi
 
-		answer.A21 = scale * (M1.A23 * M1.A31 - M1.A21 * M1.A33); // fg-di
-		answer.A22 = scale * (M1.A11 * M1.A33 - M1.A13 * M1.A31); // ai-cg
-		answer.A23 = scale * (M1.A13 * M1.A21 - M1.A11 * M1.A23); // cd-af
+		answer.setA21(scale * (M1.getA23() * M1.getA31() - M1.getA21() * M1.getA33())); // fg-di
+		answer.setA22(scale * (M1.getA11() * M1.getA33() - M1.getA13() * M1.getA31())); // ai-cg
+		answer.setA23(scale * (M1.getA13() * M1.getA21() - M1.getA11() * M1.getA23())); // cd-af
 
 
-		answer.A31 = scale * (M1.A21 * M1.A32 - M1.A22 * M1.A31); // dh-eg
-		answer.A32 = scale * (M1.A12 * M1.A31 - M1.A11 * M1.A32); // bg-ah
-		answer.A33 = scale * (M1.A11 * M1.A22 - M1.A12 * M1.A21); // ae-bd
+		answer.setA31(scale * (M1.getA21() * M1.getA32() - M1.getA22() * M1.getA31())); // dh-eg
+		answer.setA32(scale * (M1.getA12() * M1.getA31() - M1.getA11() * M1.getA32())); // bg-ah
+		answer.setA33(scale * (M1.getA11() * M1.getA22() - M1.getA12() * M1.getA21())); // ae-bd
 
 		return answer;
+	}
 }
 
 Matrix Matrix::Rotation(int _angle)
 {
-	double radians = Math.PI / 180 * _angle;
+	double radians = PI / 180 * _angle;
 	Matrix answer = Matrix();
-	answer.A11 = Math.Cos(radians);
-	answer.A12 = Math.Sin(radians);
+	answer.A11 = cos(radians);
+	answer.A12 = sin(radians);
 	answer.A13 = 0;
-	answer.A21 = -Math.Sin(radians);
-	answer.A22 = Math.Cos(radians);
+	answer.A21 = -sin(radians);
+	answer.A22 = cos(radians);
 	answer.A23 = 0;
 	answer.A31 = 0;
 	answer.A32 = 0;
@@ -284,104 +287,104 @@ Matrix Matrix::Rotation(int _angle)
 }
 
 
-static Matrix Translate(int dx, int dy)
+Matrix Matrix::Translate(int dx, int dy)
 {
 	Matrix answer = Matrix();
-	answer.A11 = 1;
-	answer.A12 = 0;
-	answer.A13 = 0;
-	answer.A21 = 0;
-	answer.A22 = 1;
-	answer.A23 = 0;
-	answer.A31 = dx;
-	answer.A32 = dy;
-	answer.A33 = 1;
+	answer.setA11(1);
+	answer.setA12(0);
+	answer.setA13(0);
+	answer.setA21(0);
+	answer.setA22(1);
+	answer.setA23(0);
+	answer.setA31(dx);
+	answer.setA32(dy);
+	answer.setA33(1);
 
 	return answer;
 }
 
-static Matrix Scale(int dx, int dy)
+Matrix Matrix::Scale(int dx, int dy)
 {
 	Matrix answer = Matrix();
-	answer.A11 = (double)dx / 100;
-	answer.A12 = 0;
-	answer.A13 = 0;
-	answer.A21 = 0;
-	answer.A22 = (double)dy / 100;
-	answer.A23 = 0;
-	answer.A31 = 0;
-	answer.A32 = 0;
-	answer.A33 = 1;
+	answer.setA11((double)dx / 100);
+	answer.setA12(0);
+	answer.setA13(0);
+	answer.setA21(0);
+	answer.setA22((double)dy / 100);
+	answer.setA23(0);
+	answer.setA31(0);
+	answer.setA32(0);
+	answer.setA33(1);
 
 	return answer;
 }
 
-static Matrix operator -(Matrix M1)
+Matrix Matrix::operator -(Matrix M1)
 {
 	return -1 * M1;
 }
 
-static Matrix RotationX(int _angle)
+Matrix Matrix::RotationX(int _angle)
 {
-	double radians = Math.PI / 180 * _angle;
+	double radians = PI / 180 * _angle;
 	Matrix answer = Matrix();
-	answer.A11 = 1;
-	answer.A12 = 0;
-	answer.A13 = 0;
-	answer.A21 = 0;
-	answer.A22 = Math.Cos(radians);
-	answer.A23 = -Math.Sin(radians);
-	answer.A31 = 0;
-	answer.A32 = Math.Sin(radians);
-	answer.A33 = Math.Cos(radians);
+	answer.setA11(1);
+	answer.setA12(0);
+	answer.setA13(0);
+	answer.setA21(0);
+	answer.setA22(cos(radians));
+	answer.setA23(-sin(radians));
+	answer.setA31(0);
+	answer.setA32(sin(radians));
+	answer.setA33(cos(radians));
 
 	return answer;
 }
-static Matrix RotationY(int _angle)
+Matrix Matrix::RotationY(int _angle)
 {
-	double radians = Math.PI / 180 * _angle;
+	double radians = PI / 180 * _angle;
 	Matrix answer = Matrix();
-	answer.A11 = Math.Cos(radians);
-	answer.A12 = 0;
-	answer.A13 = Math.Sin(radians);
-	answer.A21 = 0;
-	answer.A22 = 1;
-	answer.A23 = 0;
-	answer.A31 = -Math.Sin(radians);
-	answer.A32 = 0;
-	answer.A33 = Math.Cos(radians);
+	answer.setA11(cos(radians));
+	answer.setA12(0);
+	answer.setA13(sin(radians));
+	answer.setA21(0);
+	answer.setA22(1);
+	answer.setA23(0);
+	answer.setA31(-sin(radians));
+	answer.setA32(0);
+	answer.setA33(cos(radians));
 
 	return answer;
 }
-static Matrix RotationZ(int _angle)
+Matrix Matrix::RotationZ(int _angle)
 {
-	double radians = Math.PI / 180 * _angle;
+	double radians = PI / 180 * _angle;
 	Matrix answer = Matrix();
-	answer.A11 = Math.Cos(radians);
-	answer.A12 = -Math.Sin(radians);
-	answer.A13 = 0;
-	answer.A21 = Math.Sin(radians);
-	answer.A22 = Math.Cos(radians);
-	answer.A23 = 0;
-	answer.A31 = 0;
-	answer.A32 = 0;
-	answer.A33 = 1;
+	answer.setA11(cos(radians));
+	answer.setA12(-sin(radians));
+	answer.setA13(0);
+	answer.setA21(sin(radians));
+	answer.setA22(cos(radians));
+	answer.setA23(0);
+	answer.setA31(0);
+	answer.setA32(0);
+	answer.setA33(1);
 
 	return answer;
 }
 
-static Matrix Scale3D(int dx)
+Matrix Matrix::Scale3D(int dx)
 {
 	Matrix answer = Matrix();
-	answer.A11 = (double)dx / 100;
-	answer.A12 = 0;
-	answer.A13 = 0;
-	answer.A21 = 0;
-	answer.A22 = (double)dx / 100;
-	answer.A23 = 0;
-	answer.A31 = 0;
-	answer.A32 = 0;
-	answer.A33 = (double)dx / 100;
+	answer.setA11((double)dx / 100);
+	answer.setA12(0);
+	answer.setA13(0);
+	answer.setA21(0);
+	answer.setA22((double)dx / 100);
+	answer.setA23(0);
+	answer.setA31(0);
+	answer.setA32(0);
+	answer.setA33((double)dx / 100);
 
 	return answer;
 }
