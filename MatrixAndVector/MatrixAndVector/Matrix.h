@@ -31,14 +31,13 @@ public:
 	double getA32();
 	double getA33();
 
-	static Vector operator *(Matrix M1, Vector V1);
-	static Vector operator *(Vector V1, Matrix M1);
-	static Matrix Transpose(Matrix M1);
-	static Matrix operator +(Matrix M1, Matrix M2);
-	static Matrix operator -(Matrix M1, Matrix M2);
-	static Matrix operator *(double x, Matrix M1);
-	static Matrix operator *(Matrix M1, Matrix M2);
-	static double Determinant(Matrix M1);
+	Vector operator *(Vector V1) const;
+	Matrix Transpose(Matrix M1);
+	Matrix operator +(Matrix M2) const;
+	Matrix operator -(Matrix M2) const;
+	Matrix operator *(double x) const;
+	Matrix operator *(Matrix M2);
+	double Determinant(Matrix M1);
 	Vector Row(int i);
 	Vector Column(int i);
 	Matrix Inverse(Matrix M1);

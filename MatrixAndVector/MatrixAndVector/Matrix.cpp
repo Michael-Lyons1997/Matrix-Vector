@@ -136,19 +136,11 @@ double Matrix::getA33()
 	return A33;
 }
 
-Vector Matrix::operator*(Matrix M1, Vector V1)
+Vector Matrix::operator*(Vector V1) const
 {
-	return Vector(M1.A11 * V1.getX() + M1.A12 * V1.getY() + M1.A13 * V1.getZ(),
-		M1.A21 * V1.getX() + M1.A22 * V1.getY() + M1.A23 * V1.getZ(),
-		M1.A31 * V1.getX() + M1.A32 * V1.getY() + M1.A33 * V1.getZ());
-	
-}
-
-Vector Matrix::operator*(Vector V1, Matrix M1)
-{
-	return Vector(M1.A11 * V1.getX() + M1.A21 * V1.getY() + M1.A31 * V1.getZ(),
-		M1.A12 * V1.getX() + M1.A22 * V1.getY() + M1.A32 * V1.getZ(),
-		M1.A13 * V1.getX() + M1.A23 * V1.getY() + M1.A33 * V1.getZ());
+	return Vector(A11 * V1.getX() + A21 * V1.getY() + A31 * V1.getZ(),
+		A12 * V1.getX() + A22 * V1.getY() + A32 * V1.getZ(),
+		A13 * V1.getX() + A23 * V1.getY() + A33 * V1.getZ());
 }
 
 Matrix Matrix::Transpose(Matrix M1)
@@ -158,50 +150,50 @@ Matrix Matrix::Transpose(Matrix M1)
 		M1.A13, M1.A23, M1.A33);
 }
 
-Matrix Matrix::operator +(Matrix M1, Matrix M2)
+Matrix Matrix::operator +( Matrix M2) const
 {
-	return Matrix(M1.getA11() + M2.getA11(), M1.getA12() + M2.getA12(), M1.getA13() + M2.getA13(),
-		M1.getA21() + M2.getA21(), M1.getA22() + M2.getA22(), M1.getA23() + M2.getA23(),
-		M1.getA31() + M2.getA31(), M1.getA32() + M2.getA32(), M1.getA33() + M2.getA33());
+	return Matrix(A11 + M2.getA11(),A12 + M2.getA12(), A13 + M2.getA13(),
+		A21 + M2.getA21(), A22 + M2.getA22(), A23 + M2.getA23(),
+		A31 + M2.getA31(), A32 + M2.getA32(), A33 + M2.getA33());
 }
-Matrix Matrix::operator -(Matrix M1, Matrix M2)
+Matrix Matrix::operator -(Matrix M2) const
 {
-	return Matrix(M1.getA11() - M2.getA11(), M1.getA12() - M2.getA12(), M1.getA13() - M2.getA13(),
-		M1.getA21() - M2.getA21(), M1.getA22() - M2.getA22(), M1.getA23() - M2.getA23(),
-		M1.getA31() - M2.getA31(), M1.getA32() - M2.getA32(), M1.getA33() - M2.getA33());
+	return Matrix(A11 - M2.getA11(), A12 - M2.getA12(), A13 - M2.getA13(),
+		A21 - M2.getA21(), A22 - M2.getA22(), A23 - M2.getA23(),
+		A31 - M2.getA31(), A32 - M2.getA32(), A33 - M2.getA33());
 }
-Matrix Matrix::operator *(double x, Matrix M1)
+Matrix Matrix::operator *(double x) const
 {
 	Matrix answer = Matrix();
-	answer.setA11(M1.getA11() * x);
-	answer.setA12(M1.getA12() * x);
-	answer.setA13(M1.getA13() * x);
+	answer.setA11(A11 * x);
+	answer.setA12(A12 * x);
+	answer.setA13(A13 * x);
 
-	answer.setA21(M1.getA21() * x);
-	answer.setA22(M1.getA22() * x);
-	answer.setA23(M1.getA23() * x);
+	answer.setA21(A21 * x);
+	answer.setA22(A22 * x);
+	answer.setA23(A23 * x);
 
-	answer.setA31(M1.getA31() * x);
-	answer.setA32(M1.getA32() * x);
-	answer.setA33(M1.getA33() * x);
+	answer.setA31(A31 * x);
+	answer.setA32(A32 * x);
+	answer.setA33(A33 * x);
 
 	return answer;
 }
 
-Matrix Matrix::operator *(Matrix M1, Matrix M2)
+Matrix Matrix::operator *(Matrix M2)
 {
 	Matrix answer = Matrix();
-	answer.setA11(M1.Row(0) * M2.Column(0));
-	answer.setA12(M1.Row(0) * M2.Column(1));
-	answer.setA13(M1.Row(0) * M2.Column(2));
+	answer.setA11(Row(0) * M2.Column(0));
+	answer.setA12(Row(0) * M2.Column(1));
+	answer.setA13(Row(0) * M2.Column(2));
 
-	answer.setA21(M1.Row(1) * M2.Column(0));
-	answer.setA22(M1.Row(1) * M2.Column(1));
-	answer.setA23(M1.Row(1) * M2.Column(2));
+	answer.setA21(Row(1) * M2.Column(0));
+	answer.setA22(Row(1) * M2.Column(1));
+	answer.setA23(Row(1) * M2.Column(2));
 
-	answer.setA31(M1.Row(2) * M2.Column(0));
-	answer.setA32(M1.Row(2) * M2.Column(1));
-	answer.setA33(M1.Row(2) * M2.Column(2));
+	answer.setA31(Row(2) * M2.Column(0));
+	answer.setA32(Row(2) * M2.Column(1));
+	answer.setA33(Row(2) * M2.Column(2));
 
 
 	return answer;
@@ -321,7 +313,18 @@ Matrix Matrix::Scale(int dx, int dy)
 
 Matrix Matrix::operator -(Matrix M1)
 {
-	return -1 * M1;
+	Matrix answer = Matrix();
+	answer.setA11(-1 * A11);
+	answer.setA12(-1 * A12);
+	answer.setA13(-1 * A13);
+	answer.setA21(-1 * A21);
+	answer.setA22(-1 * A22);
+	answer.setA23(-1 * A23);
+	answer.setA31(-1 * A31);
+	answer.setA32(-1 * A32);
+	answer.setA33(-1 * A33);
+
+	return answer;
 }
 
 Matrix Matrix::RotationX(int _angle)

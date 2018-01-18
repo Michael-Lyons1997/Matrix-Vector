@@ -74,46 +74,46 @@ void Vector::normalise()
 	}
 }
 
-Vector Vector::operator +(Vector v1, Vector v2)
+Vector Vector::operator +(Vector v2) const
 {
-	return Vector(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ());
+	return Vector(x + v2.getX(), y + v2.getY(), z + v2.getZ());
 }
 
-Vector Vector::operator -(Vector v1, Vector v2)
+Vector Vector::operator -(Vector v2) const
 {
-	return Vector(v1.getX() - v2.getX(), v1.getY() - v2.getY(), v1.getZ() - v2.getZ());
+	return Vector(x - v2.getX(), y - v2.getY(), z - v2.getZ());
 }
 
-Vector Vector::operator -(Vector v)
+Vector Vector::operator -() const
 {
 	Vector v1 = Vector();
-	v1.setX(-v.getX());
-	v1.setY(-v.getY());
-	v1.setZ(-v.getZ());
+	v1.setX(-x);
+	v1.setY(-y);
+	v1.setZ(-z);
 	return v1;
 }
 
-double Vector::operator *(Vector v1, Vector v2)
+double Vector::operator *(Vector v2) const
 {
-	return (v1.getX() * v2.getX() + v1.getY() * v2.getY() + v1.getZ() * v2.getZ());
+	return (x * v2.getX() + y * v2.getY() + z * v2.getZ());
 }
 
-Vector Vector::operator *(double k, Vector v1)
+Vector Vector::operator *(double k) const
 {
-	return Vector(v1.getX() * (float)k, v1.getY() * (float)k, v1.getZ() * (float)k);
+	return Vector(x * (float)k, y * (float)k, z * (float)k);
 }
 
-Vector Vector::operator *(float k, Vector v1)
+Vector Vector::operator *(float k) const
 {
-	return Vector(v1.getX() * k, v1.getY() * k, v1.getZ() * k);
+	return Vector(x * k, y * k, z * k);
 }
 
-Vector Vector::operator *(int k, Vector v1)
+Vector Vector::operator *(int k) const
 {
-	return Vector(v1.getX() * k, v1.getY() * k, v1.getZ() * k);
+	return Vector(x * k, y * k, z * k);
 }
 
-Vector Vector::operator ^(Vector v1, Vector v2)
+Vector Vector::operator ^(Vector v2) const
 {
-	return Vector(v1.getY() * v2.getZ() - v1.getZ() * v2.getY(), v1.getZ() * v2.getX() - v1.getX() * v2.getZ(), v1.getX() * v2.getY() - v1.getY() * v2.getX());
+	return Vector(y * v2.getZ() - z * v2.getY(), z * v2.getX() - x * v2.getZ(), x * v2.getY() - y * v2.getX());
 }
